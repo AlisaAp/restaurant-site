@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import API_BASE_URL from '../../utils/API_CONFIG';
 
-export const dishesApi = createApi({
+export const api = createApi({
   reducerPath: 'dishesApi',
   tagTypes: ['Dishes'],
   baseQuery: fetchBaseQuery({
@@ -43,4 +43,4 @@ export const dishesApi = createApi({
   }),
 });
 
-export const { useGetDishesQuery, useAddNewDishMutation, useDeleteDishMutation } = dishesApi;
+export const { useGetDishesQuery, useAddNewDishMutation, useDeleteDishMutation } = api;

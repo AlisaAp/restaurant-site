@@ -1,0 +1,22 @@
+.container {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.price {
+    font-size: 1rem;
+}
+
+.btn {
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+.btn:active {
+    transform: scale(0.95);
+}

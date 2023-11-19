@@ -1,13 +1,13 @@
 import React from 'react';
 import DefaultTemplate from '../templates/DefaultTemplate';
-import Menu from '../components/menu/Menu';
+import Basket from '../components/basket/Basket';
 
-function MenuPage() {
+function BasketPage() {
   return (
     <DefaultTemplate>
-      <Menu />
+      <Basket />
     </DefaultTemplate>
   );
 }
 
-export default MenuPage;
+export default BasketPage;

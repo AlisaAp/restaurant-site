@@ -1,0 +1,13 @@
+.main {
+    min-height: calc(100vh - 64px - 96px);
+   padding: 30px;
+    background-color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        min-height: calc(100vh - 56px - 96px);
+        padding: 15px;
+    }
+
+}

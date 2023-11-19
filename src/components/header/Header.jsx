@@ -7,10 +7,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import s from './style.module.css';
 import logo from '../../assets/images/logo.svg';
+import BasketIcon from '../basket/BasketIcon';
+import Basket from '../basket/Basket';
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [basketOpen, setBasketOpen] = useState(false);
 
+  const handlerBasketToggle = () => {
+    setBasketOpen(!basketOpen);
+  };
   const handlerDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -48,7 +54,7 @@ function Header() {
       <AppBar component="nav" sx={{ bgcolor: 'black' }}>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="primary"
             aria-label="open drawer"
             edge="start"
             sx={{
@@ -86,6 +92,9 @@ function Header() {
               </li>
             </ul>
           </Box>
+          <Box sx={{ ml: 2 }}>
+            <BasketIcon clickHandler={handlerBasketToggle} />
+          </Box>
         </Toolbar>
       </AppBar>
       <Box component="nav">
@@ -106,6 +115,22 @@ function Header() {
       </Box>
       <Box>
         <Toolbar />
+      </Box>
+      <Box component="nav">
+        <Drawer
+          anchor="right"
+          variant="temporary"
+          open={basketOpen}
+          onClose={handlerBasketToggle}
+          sx={{
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: { xs: '80vw', sm: '350px' },
+            },
+          }}
+        >
+          <Basket />
+        </Drawer>
       </Box>
     </Box>
   );

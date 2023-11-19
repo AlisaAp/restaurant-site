@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dishesApi } from './api/dishesApi';
+import { api } from './api/api';
+import basket from './slices/basket';
 
 export default configureStore({
   reducer: {
-    [dishesApi.reducerPath]: dishesApi.reducer,
+    basket,
+    [api.reducerPath]: api.reducer,
   },
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(dishesApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
