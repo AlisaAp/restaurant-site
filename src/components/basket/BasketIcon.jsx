@@ -15,7 +15,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 function BasketIcon({ clickHandler }) {
-  const { basket } = useSelector((state) => state.basket);
+  const basket = useSelector((state) => state.basket.basket);
   const amountOfProducts = basket.reduce((sum, elem) => sum + elem.amount, 0);
   return (
 

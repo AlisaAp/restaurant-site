@@ -8,6 +8,8 @@ import { useSnackbar } from 'notistack';
 import s from './style.module.css';
 import { emptyBasket } from '../../store/slices/basket';
 import { useAddNewOrderMutation } from '../../store/api/api';
+import BasketList from '../basket/BasketList';
+import getTotalPrice from '../../utils/gettTotalPrice';
 
 function Order() {
   const { basket } = useSelector((state) => state.basket);
@@ -15,71 +17,84 @@ function Order() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addOrder] = useAddNewOrderMutation();
+
+  const totalPrice = getTotalPrice(basket);
   return (
-    <Box>
-      <Formik
-        initialValues={{
-          name: '',
-          phone: '',
-          address: '',
-          data: basket,
-        }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.phone) {
-            errors.phone = 'Required';
-          } else if (
-            !/^\+380\d{9}$/i.test(values.phone)
-          ) {
-            errors.phone = 'Invalid email address';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            setSubmitting(false);
-            dispatch(emptyBasket());
-            enqueueSnackbar('sucsess');
-            addOrder(values);
-            navigate('/');
-          }, 500);
-        }}
-      >
-        {({ submitForm, isSubmitting }) => (
-          <Form className={s.container}>
-            <Field
-              component={TextField}
-              name="name"
-              type="text"
-              label="name"
-            />
-            <br />
-            <Field
-              component={TextField}
-              type="phone"
-              label="phone"
-              name="phone"
-            />
-            <br />
-            <Field
-              component={TextField}
-              type="text"
-              label="address"
-              name="address"
-            />
-            {isSubmitting && <LinearProgress />}
-            <br />
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting}
-              onClick={submitForm}
-            >
-              Submit
-            </Button>
-          </Form>
-        )}
-      </Formik>
+    <Box sx={{
+      display: 'flex', justifyContent: 'center', flexDirection: { xs: 'column', sm: 'row' }, gap: '40px',
+    }}
+    >
+      <Box sx={{ flexBasis: '400px' }}>
+        <BasketList />
+      </Box>
+      <Box>
+        <Formik
+          initialValues={{
+            name: '',
+            phone: '',
+            address: '',
+            data: basket,
+          }}
+          validate={(values) => {
+            const errors = {};
+            if (!values.phone) {
+              errors.phone = 'Required';
+            } else if (
+              !/^\+380\d{9}$/i.test(values.phone)
+            ) {
+              errors.phone = 'Invalid email address';
+            }
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              setSubmitting(false);
+              dispatch(emptyBasket());
+              enqueueSnackbar('sucsess');
+              addOrder(values);
+              navigate('/');
+            }, 500);
+          }}
+        >
+          {({ submitForm, isSubmitting }) => (
+            <Form className={s.container}>
+              <Field
+                component={TextField}
+                name="name"
+                type="text"
+                label="name"
+              />
+              <br />
+              <Field
+                component={TextField}
+                type="phone"
+                label="phone"
+                name="phone"
+              />
+              <br />
+              <Field
+                component={TextField}
+                type="text"
+                label="address"
+                name="address"
+              />
+              {isSubmitting && <LinearProgress />}
+              <br />
+              {totalPrice}
+              <br />
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting}
+                onClick={submitForm}
+                sx={{ mt: '10px' }}
+              >
+                MAKE AN ORDER
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Box>
     </Box>
   );
 }
