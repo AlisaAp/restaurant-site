@@ -126,6 +126,7 @@ function Header() {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: { xs: '80vw', sm: '350px' },
+              display: 'block',
             },
           }}
         >

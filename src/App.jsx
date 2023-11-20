@@ -9,7 +9,7 @@ import MenuPage from './pages/MenuPage';
 import PageNotFound from './pages/PageNotFound';
 import store from './store';
 import CustomTheme from './utils/theme';
-import BasketPage from './pages/BasketPage';
+import OrderPage from './pages/OrderPage';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/menu" element={<MenuPage />} />
-              <Route path="/basket" element={<BasketPage />} />
+              <Route path="/order" element={<OrderPage />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </ThemeProvider>

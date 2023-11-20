@@ -5,21 +5,25 @@ import {
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
 import s from './style.module.css';
 import CustomTheme from '../../utils/theme';
 import { addToBasket, changeAmount } from '../../store/slices/basket';
 
 function MenuItem({ item }) {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+
   const { basket } = useSelector((state) => state.basket);
   const [hover, setHover] = useState(false);
-  console.log(basket.includes((i) => i.id));
+
   const handleMouseLeave = () => {
     setHover(false);
   };
   const handleMouseOver = () => {
     setHover(true);
   };
+
   const initialState = {
     id: item.id,
     name: item.name,
@@ -28,6 +32,7 @@ function MenuItem({ item }) {
     amount: 1,
   };
   const clickHandler = () => {
+    enqueueSnackbar(`${item.name} added to basket`);
     if (basket.find((i) => i.id === item.id)) return dispatch(changeAmount(item.id));
     return dispatch(addToBasket(initialState));
   };
@@ -56,7 +61,7 @@ function MenuItem({ item }) {
                     className={s.btn}
                     onClick={clickHandler}
                   >
-                    ORDER NOW
+                                      ADD TO BASKET
                   </button>
                 ) : null}
             </div>

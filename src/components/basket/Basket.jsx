@@ -8,10 +8,11 @@ import {
   TableCell, TableContainer, TableHead, TableRow,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { NavLink } from 'react-router-dom';
 import s from './style.module.css';
 import { removeFromBasket } from '../../store/slices/basket';
+import BasketIcon from './BasketIcon';
 
-// eslint-disable-next-line react/prop-types
 function Basket() {
   const dispatch = useDispatch();
   const { basket } = useSelector((state) => state.basket);
@@ -19,10 +20,30 @@ function Basket() {
   const deleteHandle = (id) => {
     dispatch(removeFromBasket(id));
   };
-  if (!basket.length) return <div>empty</div>;
+  if (!basket.length) {
+    return (
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        flexDirection: 'column',
+      }}
+      >
+        <IconButton
+          color="primary"
+          aria-label="open drawer"
+          edge="start"
+        >
+          <BasketIcon sx={{ fontSize: 'large' }} />
+        </IconButton>
+        <p>EMPTY BASKET</p>
+      </Box>
+    );
+  }
 
   return (
-    <Box classname={s.container}>
+    <Box>
       <TableContainer>
         <Table aria-label="simple table">
           <TableHead>
@@ -38,7 +59,6 @@ function Basket() {
             {basket.map((item) => (
               <TableRow
                 key={item.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
                   <Avatar alt={item.name} src={item.src} />
@@ -65,7 +85,9 @@ function Basket() {
         <p className={s.price}>
           {`total price: ${totalPrice}₴`}
         </p>
-        <button type="button" color="primary" className={s.btn}> ORDER</button>
+        <NavLink to="/order">
+          <button type="button" color="primary" className={s.btn}>ORDER</button>
+        </NavLink>
       </div>
     </Box>
   );

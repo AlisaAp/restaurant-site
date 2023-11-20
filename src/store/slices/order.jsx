@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const basket = createSlice({
+const order = createSlice({
   initialState: {
-    basket: [],
+    order: {},
   },
-  name: 'basket',
+  name: 'order',
   reducers: {
     addToBasket: (state, { payload }) => {
       state.basket.push(payload);
@@ -12,10 +12,6 @@ const basket = createSlice({
     removeFromBasket: (state, { payload }) => {
       // eslint-disable-next-line no-param-reassign
       state.basket = state.basket.filter((item) => item.id !== payload);
-    },
-    emptyBasket: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.basket = [];
     },
     changeAmount: (state, { payload: id }) => {
       // eslint-disable-next-line no-param-reassign
@@ -25,8 +21,6 @@ const basket = createSlice({
     },
   },
 });
-export const {
-  addToBasket, removeFromBasket, emptyBasket, changeAmount,
-} = basket.actions;
+export const { addToBasket, removeFromBasket, changeAmount } = order.actions;
 
-export default basket.reducer;
+export default order.reducer;

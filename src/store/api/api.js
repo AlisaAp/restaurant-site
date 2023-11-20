@@ -33,6 +33,16 @@ export const api = createApi({
       }),
       invalidatesTags: [{ type: 'Dishes', id: 'LIST' }],
     }),
+    addNewOrder: build.mutation({
+      query: (data) => ({
+        url: 'orders',
+        method: 'POST',
+        body: {
+          ...data,
+        },
+      }),
+      invalidatesTags: [{ type: 'Orders', id: 'LIST' }],
+    }),
     deleteDish: build.mutation({
       query: (id = 1) => ({
         url: `dishes/${id}`,
@@ -43,4 +53,6 @@ export const api = createApi({
   }),
 });
 
-export const { useGetDishesQuery, useAddNewDishMutation, useDeleteDishMutation } = api;
+export const {
+  useGetDishesQuery, useAddNewDishMutation, useDeleteDishMutation, useAddNewOrderMutation,
+} = api;

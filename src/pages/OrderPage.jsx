@@ -1,13 +1,13 @@
 import React from 'react';
 import DefaultTemplate from '../templates/DefaultTemplate';
-import Basket from '../components/basket/Basket';
+import Order from '../components/order/Order';
 
-function BasketPage() {
+function OrderPage() {
   return (
     <DefaultTemplate>
-      <Basket />
+      <Order />
     </DefaultTemplate>
   );
 }
 
-export default BasketPage;
+export default OrderPage;
