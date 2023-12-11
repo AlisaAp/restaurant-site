@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -12,18 +12,18 @@ import OrderPage from './pages/OrderPage';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <ThemeProvider theme={CustomTheme}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/menu/:category" element={<MenuPage />} />
             <Route path="/order" element={<OrderPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </ThemeProvider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import s from './style.module.css';
-import BasketList from './BasketList';
+import BasketList from './basketList/BasketList';
 import getTotalPrice from '../../utils/gettTotalPrice';
 
 function Basket() {

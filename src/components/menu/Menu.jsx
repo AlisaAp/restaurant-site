@@ -1,12 +1,15 @@
 import React from 'react';
 import { Grid, Skeleton } from '@mui/material';
 import { SnackbarProvider } from 'notistack';
-import { useGetDishesQuery } from '../../store/api/api';
-// import s from './style.module.css';
+import { useParams } from 'react-router-dom';
+import { useGetDishesByCategoryQuery } from '../../store/api/api';
+
 import MenuItem from './MenuItem';
 
 function Menu() {
-  const { data, isLoading } = useGetDishesQuery(10);
+  let { category } = useParams();
+  if (category === 'all') category = '';
+  const { data, isLoading } = useGetDishesByCategoryQuery(category);
 
   if (isLoading) {
     return (

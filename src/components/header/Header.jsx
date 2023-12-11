@@ -38,7 +38,7 @@ function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/menu">Menu</NavLink>
+          <NavLink to="/menu/all">Menu</NavLink>
         </li>
         <li>
           <NavLink to="/about">About</NavLink>
@@ -82,7 +82,7 @@ function Header() {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/menu">Menu</NavLink>
+                <NavLink to="/menu/all">Menu</NavLink>
               </li>
               <li>
                 <NavLink to="/about">About</NavLink>
@@ -125,7 +125,7 @@ function Header() {
           sx={{
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: { xs: '80vw', sm: '350px' },
+              width: { xs: '85vw', sm: '350px' },
               display: 'block',
             },
           }}

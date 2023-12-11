@@ -1,8 +1,10 @@
 .home {
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: calc(100vh - 64px - 96px);
     flex-direction: column;
-    background-position: center;
+    background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
     margin: -30px;
@@ -23,9 +25,8 @@
 @media only screen and (max-width: 600px) {
     .home {
         height: calc(100vh - 56px - 96px);
-        /*justify-content: center;*/
-        align-items: center;
         margin: -15px;
+  justify-content: start;
     }
     .headerContainer {
         margin-left: 0;

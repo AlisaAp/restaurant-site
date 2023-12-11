@@ -10,15 +10,23 @@ export const api = createApi({
 
   endpoints: (build) => ({
     getDishes: build.query({
-      query: (limit) => `dishes?page=1&limit=${limit}`,
+      query: (limit) => `menu?page=1&limit=${limit}`,
       providesTags: (result) => (result
         ? [
-          ...result.map(({ id }) => ({ type: 'Dishes', id })),
-          { type: 'Dishes', id: 'LIST' },
+          ...result.map(({ id }) => ({ type: 'menu', id })),
+          { type: 'menu', id: 'LIST' },
         ]
-        : [{ type: 'Dishes', id: 'LIST' }]),
+        : [{ type: 'menu', id: 'LIST' }]),
     }),
-
+    getDishesByCategory: build.query({
+      query: (category) => `menu?category=${category}`,
+      providesTags: (result) => (result
+        ? [
+          ...result.map(({ id }) => ({ type: 'menu', id })),
+          { type: 'menu', id: 'LIST' },
+        ]
+        : [{ type: 'menu', id: 'LIST' }]),
+    }),
     getDishById: build.query({
       query: (id = 1) => `dishes/${id}`,
     }),
@@ -54,5 +62,9 @@ export const api = createApi({
 });
 
 export const {
-  useGetDishesQuery, useAddNewDishMutation, useDeleteDishMutation, useAddNewOrderMutation,
+  useGetDishesQuery,
+  useGetDishesByCategoryQuery,
+  useAddNewDishMutation,
+  useDeleteDishMutation,
+  useAddNewOrderMutation,
 } = api;

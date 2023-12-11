@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Badge, IconButton } from '@mui/material';
+import { Badge, IconButton, Tooltip } from '@mui/material';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -18,17 +18,18 @@ function BasketIcon({ clickHandler }) {
   const basket = useSelector((state) => state.basket.basket);
   const amountOfProducts = basket.reduce((sum, elem) => sum + elem.amount, 0);
   return (
-
-    <IconButton
-      color="primary"
-      aria-label="open drawer"
-      edge="start"
-      onClick={clickHandler}
-    >
-      <StyledBadge badgeContent={amountOfProducts} color="white">
-        <ShoppingBasketIcon />
-      </StyledBadge>
-    </IconButton>
+    <Tooltip title="basket">
+      <IconButton
+        color="primary"
+        aria-label="open drawer"
+        edge="start"
+        onClick={clickHandler}
+      >
+        <StyledBadge badgeContent={amountOfProducts} color="white">
+          <ShoppingBasketIcon />
+        </StyledBadge>
+      </IconButton>
+    </Tooltip>
   );
 }
 

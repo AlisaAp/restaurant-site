@@ -8,7 +8,7 @@ import { useSnackbar } from 'notistack';
 import s from './style.module.css';
 import { emptyBasket } from '../../store/slices/basket';
 import { useAddNewOrderMutation } from '../../store/api/api';
-import BasketList from '../basket/BasketList';
+import BasketList from '../basket/basketList/BasketList';
 import getTotalPrice from '../../utils/gettTotalPrice';
 
 function Order() {

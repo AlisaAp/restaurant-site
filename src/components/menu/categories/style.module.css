@@ -1,0 +1,25 @@
+.categories{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.box {
+    width: 200px;
+    padding: 20px 0;
+    font-size: 1.1rem;
+
+}
+.box img {
+    margin-right: 7px;
+}
+.box:active{
+    transform: scale(0.95);
+}
+@media only screen and (max-width: 600px) {
+    .categories {
+        overflow: scroll;
+    }
+    .box{
+        width: 150px;
+    }
+}

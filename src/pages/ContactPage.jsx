@@ -1,11 +1,11 @@
 import React from 'react';
 import DefaultTemplate from '../templates/DefaultTemplate';
-import Home from '../components/home/Home';
+import Categories from '../components/menu/categories/Categories';
 
 function ContactPage() {
   return (
     <DefaultTemplate>
-      <Home />
+      <Categories />
     </DefaultTemplate>
   );
 }

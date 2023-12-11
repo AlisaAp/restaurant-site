@@ -2,6 +2,7 @@
   "name": "myapp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alisaap.github.io/restaurant-site/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -13,6 +14,7 @@
     "@testing-library/react": "^13.4.0",
     "formik": "^2.4.5",
     "formik-mui": "^5.0.0-alpha.0",
+    "gh-pages": "^6.1.0",
     "notistack": "^3.0.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
