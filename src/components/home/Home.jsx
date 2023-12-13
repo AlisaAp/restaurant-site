@@ -13,7 +13,7 @@ function Home() {
         <div>
           <h1 className={s.title}>Best Italian food</h1>
           <p className={s.subtitle}>food website</p>
-          <Link to="/menu">
+          <Link to="/menu/all">
             <Button variant="contained" size="large" color="primary">ORDER NOW</Button>
           </Link>
         </div>

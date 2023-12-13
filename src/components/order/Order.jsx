@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import InputMask from 'react-input-mask';
 import s from './style.module.css';
 import { emptyBasket } from '../../store/slices/basket';
 import { useAddNewOrderMutation } from '../../store/api/api';
@@ -21,10 +22,10 @@ function Order() {
   const totalPrice = getTotalPrice(basket);
   return (
     <Box sx={{
-      display: 'flex', justifyContent: 'center', flexDirection: { xs: 'column', sm: 'row' }, gap: '40px',
+      display: 'flex', justifyContent: 'center', flexDirection: { xs: 'column', sm: 'row' }, gap: '100px',
     }}
     >
-      <Box sx={{ flexBasis: '400px' }}>
+      <Box>
         <BasketList />
       </Box>
       <Box>
@@ -42,8 +43,10 @@ function Order() {
             } else if (
               !/^\+380\d{9}$/i.test(values.phone)
             ) {
-              errors.phone = 'Invalid email address';
+              errors.phone = 'Invalid phone number';
             }
+            if (!values.address) errors.address = 'Required';
+            if (!values.name) errors.name = 'Required';
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -56,8 +59,11 @@ function Order() {
             }, 500);
           }}
         >
-          {({ submitForm, isSubmitting }) => (
+          {({
+            submitForm, isSubmitting, handleChange, values,
+          }) => (
             <Form className={s.container}>
+
               <Field
                 component={TextField}
                 name="name"
@@ -65,12 +71,22 @@ function Order() {
                 label="name"
               />
               <br />
-              <Field
-                component={TextField}
-                type="phone"
-                label="phone"
-                name="phone"
-              />
+              <InputMask
+                mask="+380999999999"
+                onChange={handleChange}
+                value={values.phone}
+              >
+                {() => (
+                  <Field
+                    component={TextField}
+                    type="text"
+                    label="phone number"
+                    name="phone"
+                    fullWidth
+                    variant="outlined"
+                  />
+                )}
+              </InputMask>
               <br />
               <Field
                 component={TextField}

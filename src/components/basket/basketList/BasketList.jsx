@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Avatar, Box,
   IconButton, Table, TableBody,
-  TableCell, TableContainer, TableHead, TableRow,
+  TableCell, TableContainer, TableRow,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,15 +24,15 @@ function BasketList() {
   return (
     <TableContainer>
       <Table aria-label="simple table" sx={{ minWidth: 330 }}>
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell />
-            <TableCell />
-            <TableCell />
-            <TableCell />
-          </TableRow>
-        </TableHead>
+        {/* <TableHead> */}
+        {/*  <TableRow> */}
+        {/*    <TableCell /> */}
+        {/*    <TableCell /> */}
+        {/*    <TableCell /> */}
+        {/*    <TableCell /> */}
+        {/*    <TableCell /> */}
+        {/*  </TableRow> */}
+        {/* </TableHead> */}
         <TableBody>
           {basket.map((item) => (
             <TableRow
