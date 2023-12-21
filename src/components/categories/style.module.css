@@ -1,0 +1,24 @@
+.categories {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+.link {
+    text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+    .categories {
+        overflow: scroll;
+        margin: 0 -15px 20px;
+    }
+    .categories::-webkit-scrollbar { width: 0; }
+
+    .box:nth-child(1) {
+        margin-left: 15px;
+    }
+
+    .box:last-child {
+        margin-right: 15px;
+    }
+}

@@ -18,6 +18,15 @@ export const api = createApi({
         ]
         : [{ type: 'menu', id: 'LIST' }]),
     }),
+    getCategories: build.query({
+      query: () => 'categories',
+      providesTags: (result) => (result
+        ? [
+          ...result.map(({ id }) => ({ type: 'categories', id })),
+          { type: 'categories', id: 'LIST' },
+        ]
+        : [{ type: 'categories', id: 'LIST' }]),
+    }),
     getDishesByCategory: build.query({
       query: (category) => `menu?category=${category}`,
       providesTags: (result) => (result
@@ -63,6 +72,7 @@ export const api = createApi({
 
 export const {
   useGetDishesQuery,
+  useGetCategoriesQuery,
   useGetDishesByCategoryQuery,
   useAddNewDishMutation,
   useDeleteDishMutation,
