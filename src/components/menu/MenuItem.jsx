@@ -3,11 +3,9 @@ import {
   Box, Grid, Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import s from './style.module.css';
-import CustomTheme from '../../utils/theme';
 import { addToBasket, changeAmount } from '../../store/slices/basket';
 
 function MenuItem({ item }) {
@@ -37,47 +35,45 @@ function MenuItem({ item }) {
     return dispatch(addToBasket(initialState));
   };
   return (
-    <ThemeProvider theme={CustomTheme}>
-      <Grid item xs={12} sm={6} md={4} key={item.id}>
-        <Box sx={{ marginRight: 0.5 }}>
-          <div
+    <Grid item xs={12} sm={6} md={4} key={item.id}>
+      <Box sx={{ marginRight: 0.5 }}>
+        <div
+          className={s.imgBox}
+          onMouseOver={handleMouseOver}
+          onFocus={handleMouseOver}
+          onMouseOut={handleMouseLeave}
+          onBlur={handleMouseLeave}
+        >
+          <img
             className={s.img}
-            onMouseOver={handleMouseOver}
-            onFocus={handleMouseOver}
-            onMouseOut={handleMouseLeave}
-            onBlur={handleMouseLeave}
-          >
-            <img
-              style={{ width: '100%', height: 'auto' }}
-              alt={item.name}
-              src={item.image}
-            />
-            {hover
-              ? (
-                <button
-                  className={s.btn}
-                  type="button"
-                  color="primary"
-                  onClick={clickHandler}
-                >
-                  ADD TO BASKET
-                </button>
-              ) : null}
-          </div>
-          <Box sx={{ pr: 2 }}>
-            <Typography gutterBottom variant="body2">
-              {item.name}
-            </Typography>
-            <Typography display="block" variant="caption" color="text.secondary">
-              {item.description}
-            </Typography>
-            <Typography variant="caption" color="text.secondary">
-              {`${item.price} • ₴`}
-            </Typography>
-          </Box>
+            alt={item.name}
+            src={item.image}
+          />
+          {hover
+            ? (
+              <button
+                className={s.btn}
+                type="button"
+                color="primary"
+                onClick={clickHandler}
+              >
+                ADD TO BASKET
+              </button>
+            ) : null}
+        </div>
+        <Box sx={{ pr: 15 }}>
+          <Typography gutterBottom variant="subtitle1">
+            {item.name}
+          </Typography>
+          <Typography display="block" variant="caption" color="text.secondary">
+            {item.description}
+          </Typography>
+          <Typography variant="button" color="text.secondary">
+            {`${item.price} • ₴`}
+          </Typography>
         </Box>
-      </Grid>
-    </ThemeProvider>
+      </Box>
+    </Grid>
   );
 }
 

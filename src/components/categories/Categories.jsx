@@ -1,6 +1,6 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
-import { Button, Skeleton } from '@mui/material';
+import { Box, Button, Skeleton } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import s from './style.module.css';
 import { useGetCategoriesQuery } from '../../store/api/api';
@@ -17,8 +17,11 @@ function Categories() {
     );
   }
   return (
-    <div className={s.categories}>
-      <Stack direction="row" justifyContent="space-between" spacing={{ xs: 1, sm: 2, md: 4 }}>
+    <Box sx={{
+      mb: { xs: 0, md: 15 }, mx: { xs: -15, md: 0 }, '&::-webkit-scrollbar': { width: 0 }, overflow: { xs: 'scroll', lg: 'visible' },
+    }}
+    >
+      <Stack direction="row" justifyContent="space-between" spacing={{ xs: 5, sm: 10, md: 15 }}>
         {categoriesData.map(({ name, img }) => (
           <NavLink to={`/menu/${name}`} className={s.link} key={name}>
             {({ isActive }) => (
@@ -36,7 +39,7 @@ function Categories() {
           </NavLink>
         ))}
       </Stack>
-    </div>
+    </Box>
   );
 }
 

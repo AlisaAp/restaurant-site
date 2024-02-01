@@ -1,23 +1,14 @@
-.btnBox {
-    padding: 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #918f8f;
-    border-radius: 6px;
-}
-
 .btn {
     width: 30px;
     border: none;
-    background-color: white;
+    background-color: #f9fbe7;
     cursor: pointer;
-    color: #918f8f;
     font-size: 1.2rem;
+    vertical-align: center;
 }
 
 .btn :hover {
-    color: #090909;
+    background-color: #f9fbe7;
 }
 
 .btn :active {

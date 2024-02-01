@@ -1,30 +1,49 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import CustomTheme from './utils/theme';
+import DefaultTemplate from './templates/DefaultTemplate';
+import PageNotFound from './pages/PageNotFound';
 import HomePage from './pages/HomePage';
+import MenuPage from './pages/MenuPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
-import MenuPage from './pages/MenuPage';
-import PageNotFound from './pages/PageNotFound';
-import CustomTheme from './utils/theme';
 import OrderPage from './pages/OrderPage';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <DefaultTemplate />,
+    errorElement: <PageNotFound />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: 'menu/:category',
+        element: <MenuPage />,
+      },
+      {
+        path: 'about',
+        element: <AboutPage />,
+      },
+      {
+        path: 'contact',
+        element: <ContactPage />,
+      },
+      {
+        path: 'order',
+        element: <OrderPage />,
+      },
+    ],
+  },
+]);
 function App() {
   return (
-    <div className="App">
-      <HashRouter>
-        <ThemeProvider theme={CustomTheme}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/menu/:category" element={<MenuPage />} />
-            <Route path="/order" element={<OrderPage />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </ThemeProvider>
-      </HashRouter>
-    </div>
+    <ThemeProvider theme={CustomTheme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 

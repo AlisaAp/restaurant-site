@@ -36,7 +36,7 @@ function Basket() {
   }
 
   return (
-    <Box>
+    <Box sx={{ p: 20 }}>
       <BasketList />
       <div className={s.container}>
         <p className={s.price}>

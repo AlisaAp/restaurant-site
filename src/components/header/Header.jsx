@@ -26,7 +26,7 @@ function Header() {
         color="goldenrod"
         variant="h6"
         component="div"
-        sx={{ flexGrow: 1, my: 2 }}
+        sx={{ flexGrow: 1, my: 15 }}
       >
         <img src={logo} alt="logo" height="70" width="200" />
       </Typography>
@@ -52,13 +52,13 @@ function Header() {
   return (
     <Box>
       <AppBar component="nav" sx={{ bgcolor: 'black' }}>
-        <Toolbar>
+        <Toolbar sx={{ mx: 15 }}>
           <IconButton
             color="primary"
             aria-label="open drawer"
             edge="start"
             sx={{
-              mr: 2,
+              mr: 15,
               display: { sm: 'none' },
             }}
             onClick={handlerDrawerToggle}
@@ -73,7 +73,7 @@ function Header() {
               flexGrow: 1, alignItems: 'center', display: 'flex',
             }}
           >
-            <RestaurantIcon sx={{ mr: 1 }} />
+            <RestaurantIcon sx={{ mr: 5 }} />
             My Restaurant
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -92,7 +92,7 @@ function Header() {
               </li>
             </ul>
           </Box>
-          <Box sx={{ ml: 2 }}>
+          <Box sx={{ ml: 15 }}>
             <BasketIcon clickHandler={handlerBasketToggle} />
           </Box>
         </Toolbar>

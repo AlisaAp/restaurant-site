@@ -1,12 +1,12 @@
 .main {
-    min-height: calc(100vh - 64px - 96px);
-   padding: 30px;
-    background-color: white;
+    min-height: calc(100vh - 64px - 94px);
+    padding: 30px;
+    background-color: #ffffff;
 }
 
 @media only screen and (max-width: 600px) {
     .main {
-        min-height: calc(100vh - 56px - 96px);
+        min-height: calc(100vh - 56px - 94px);
         padding: 15px;
     }
 

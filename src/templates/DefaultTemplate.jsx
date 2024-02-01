@@ -1,25 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import s from './style.module.css';
 
-function DefaultTemplate({ children }) {
+function DefaultTemplate() {
   return (
     <>
       <Header />
       <div className={s.main}>
-        {children}
+        <Outlet />
       </div>
       <Footer />
     </>
   );
 }
 
-DefaultTemplate.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-};
 export default DefaultTemplate;

@@ -4,47 +4,44 @@ import { Button, LinearProgress, Box } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 import InputMask from 'react-input-mask';
-// import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import { useNavigate } from 'react-router-dom';
 import s from './style.module.css';
 import { emptyBasket } from '../../store/slices/basket';
 import { useAddNewOrderMutation } from '../../store/api/api';
 import BasketList from '../basket/basketList/BasketList';
 import getTotalPrice from '../../utils/gettTotalPrice';
-import SuccessOrder from './successOrder/SuccessOrder';
 
 function Order() {
+  const navigate = useNavigate();
   const { basket } = useSelector((state) => state.basket);
   const dispatch = useDispatch();
   const [addOrder] = useAddNewOrderMutation();
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const totalPrice = getTotalPrice(basket);
-  // if (basket.length === 0) {
-  //   return (
-  //     <Box sx={{
-  //       display: 'flex',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       flexDirection: 'column',
-  //       fontSize: 18,
-  //       gap: '30px',
-  //       mt: 2,
-  //     }}
-  //     >
-  //       <ProductionQuantityLimitsIcon color="primary" fontSize="large" />
-  //       The basket is empty. You should add some dish
-  //     </Box>
-  //   );
-  // }
+  if (basket.length === 0) {
+    return (
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 18,
+        gap: '30px',
+        mt: 2,
+      }}
+      >
+        <ProductionQuantityLimitsIcon color="primary" fontSize="large" />
+        The basket is empty. You should add some dish
+      </Box>
+    );
+  }
   return (
     <Box sx={{
       display: 'flex',
       justifyContent: 'center',
+      alignItems: 'center',
       flexDirection: { xs: 'column', sm: 'row' },
-      gap: '100px',
+      gap: { xs: 30, sm: 100 },
     }}
     >
       <Box>
@@ -74,9 +71,9 @@ function Order() {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               setSubmitting(false);
-              handleOpen();
               dispatch(emptyBasket());
               addOrder(values);
+              navigate('/');
             }, 500);
           }}
         >
@@ -130,9 +127,7 @@ function Order() {
             </Form>
           )}
         </Formik>
-        <SuccessOrder open={open} handleClose={handleClose} />
       </Box>
-
     </Box>
   );
 }
